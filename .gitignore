@@ -1,0 +1,45 @@
+# Node / frontend
+node_modules/
+/dist
+/build
+.vite
+
+# Environment files
+.env
+.env.*
+frontend/.env
+backend/docker/.env
+backend/docker/.env.*
+
+# Logs
+logs/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Docker
+docker-compose.override.yml
+**/docker-compose.override.yml
+
+# Lua / Nakama
+*.luacov
+luacov.report.out
+
+# Temporary
+tmp/
+*.tmp
+
+# Coverage / build artifacts
+coverage/
+
+# Git
+.git-credentials
+
+# Misc
+*.local

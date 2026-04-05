@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html, body {
+    @apply bg-ink text-white font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+  }
+
+  ::selection { background: #00FFB240; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { @apply bg-dim; }
+  ::-webkit-scrollbar-thumb { @apply bg-border rounded-full; }
+}
+
+@layer components {
+  /* Grid cell */
+  .cell {
+    @apply relative flex items-center justify-center
+           cursor-pointer select-none
+           text-5xl font-display tracking-widest
+           transition-all duration-150
+           border border-border rounded-xl;
+    aspect-ratio: 1;
+  }
+  .cell:hover:not(.cell--taken) {
+    @apply bg-border/30 border-neon/40;
+    box-shadow: inset 0 0 24px #00FFB210;
+  }
+  .cell--x  { @apply text-neon;  }
+  .cell--o  { @apply text-coral; }
+  .cell--taken { @apply cursor-default; }
+  .cell--win {
+    animation: win-flash 0.5s ease forwards;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-body font-semibold text-ink bg-neon
+           transition-all duration-200 hover:brightness-110 active:scale-95;
+    box-shadow: 0 0 24px #00FFB240;
+  }
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-body font-semibold text-neon bg-transparent
+           border border-neon/50 transition-all duration-200
+           hover:bg-neon/10 active:scale-95;
+  }
+  .btn-ghost {
+    @apply px-4 py-2 rounded-lg text-muted font-body text-sm
+           transition hover:text-white hover:bg-border/30 active:scale-95;
+  }
+
+  /* Panels */
+  .panel {
+    @apply bg-panel border border-border rounded-2xl;
+  }
+}
+
+@keyframes win-flash {
+  0%   { box-shadow: 0 0 0   #00FFB200; background: transparent; }
+  50%  { box-shadow: 0 0 32px #00FFB260; background: #00FFB210; }
+  100% { box-shadow: 0 0 16px #00FFB230; background: #00FFB208; }
+}
+
+/* Scanline overlay for CRT effect */
+.scanlines::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.04) 2px,
+    rgba(0,0,0,0.04) 4px
+  );
+  z-index: 9999;
+}
+
+/* Neon glow text */
+.glow-neon { text-shadow: 0 0 20px #00FFB2, 0 0 40px #00FFB250; }
+.glow-coral { text-shadow: 0 0 20px #FF4F6D, 0 0 40px #FF4F6D50; }

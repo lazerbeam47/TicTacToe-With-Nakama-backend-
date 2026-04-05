@@ -1,0 +1,54 @@
+# config.yml — Nakama server configuration
+# Override any value via environment variables: NAKAMA_<SECTION>_<KEY>
+
+name: "lila_tictactoe"
+
+logger:
+  level: "INFO"
+  stdout: true
+
+database:
+  address:
+    - "postgres:localdb@localhost:5432/nakama"
+  conn_max_lifetime_ms: 60000
+  max_open_conns: 32
+  max_idle_conns: 8
+
+runtime:
+  lua_api_stack_size: 256
+  env:
+    - "LILA_ENV=production"
+
+console:
+  port: 7349
+  username: "admin"
+  password: "adminpassword"  # override in production via env
+
+socket:
+  port: 7350
+  address: "0.0.0.0"
+  protocol: "tcp"
+  max_message_size_bytes: 4096
+  read_deadline_ms: 10000
+  write_deadline_ms: 10000
+  idle_timeout_ms: 60000
+  ping_period_ms: 15000
+  pong_wait_ms: 25000
+
+session:
+  token_expiry_sec: 86400   # 24 hours
+  refresh_token_expiry_sec: 2592000  # 30 days
+
+matchmaker:
+  max_tickets: 5
+
+match:
+  deferred_queue_size: 4096
+  join_attempt_queue_size: 128
+  max_empty_sec: 60
+
+leaderboard:
+  blacklist_rank_cache: []
+
+metrics:
+  reporting_freq_sec: 60

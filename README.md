@@ -327,7 +327,7 @@ A full working demo is shown in the attached video (recorded locally using the D
 - Real-time multiplayer gameplay with server-authoritative state
 - Automatic matchmaking and private match flow
 - Match lifecycle (join, play, win/draw, rematch)
-
+ https://www.loom.com/share/f2e0a47befed45018f79b6a915af34c4
 ---
 
 ## Design Decisions
